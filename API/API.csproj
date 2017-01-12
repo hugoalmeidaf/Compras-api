@@ -92,19 +92,19 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\ListaController.cs" />
+    <Compile Include="Controllers\PessoaController.cs" />
     <Compile Include="Data\CompraContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Lista.cs" />
+    <Compile Include="Models\Pessoa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Properties\PublishProfiles\compras-api - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\compras-api - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\comprasapi.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

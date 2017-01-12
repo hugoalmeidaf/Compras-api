@@ -2,7 +2,6 @@
 using API.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -10,30 +9,34 @@ using System.Web.Http;
 
 namespace API.Controllers
 {
-    public class ItemController : ApiController
+    public class PessoaController : ApiController
     {
         private CompraContext _db;
 
-        public ItemController()
+        public PessoaController()
         {
             _db = new CompraContext();
         }
 
-        public IEnumerable<Item> Get()
+        public Pessoa Get()
         {
-            return _db.Itens.ToList();
-        }
+            var p = new Pessoa();
 
-        public IEnumerable<Item> Get(string busca)
-        {
-            var pattern = $"%{busca}%";
-            return _db.Itens.Where(i => SqlFunctions.PatIndex(pattern, i.Nome) > 0).ToList();
-        }
-
-        public void Post([FromBody]Item item)
-        {
-            _db.Itens.Add(item);
+            _db.Pessoas.Add(p);
             _db.SaveChanges();
+
+            return p;
+        }
+
+        public Pessoa Get(Guid ID)
+        {
+            var p = _db.Pessoas.Find(ID);
+            p.UltimoAcesso = DateTime.Now;
+
+            _db.Entry<Pessoa>(p).State = System.Data.Entity.EntityState.Modified;
+            _db.SaveChanges();
+
+            return _db.Pessoas.Find(ID);
         }
 
         protected override void Dispose(bool disposing)
